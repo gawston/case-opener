@@ -48,8 +48,6 @@ open.addEventListener('click', () => {
         }
         setTimeout(() => {
             popup.style.display = 'flex';
-            // const audio = new Audio('assets/sound/interface-124464.mp3');
-            // audio.play();
         }, 300);
     });
 });
@@ -65,67 +63,76 @@ close.addEventListener('click', () => {
         
 });
 
+function setPercent() {
+    const uncommonPercent = 55;
+    const commonPercent = 25;
+    const rarePercent = 15;
+    const epicPercent = 4.5;
+    const legendaryPercent = 0.5;
+    return [uncommonPercent, commonPercent, rarePercent, epicPercent, legendaryPercent];
+}
+
 function getRandomBox() {
+    const uncommonPercent = setPercent()[0];
+    const commonPercent = setPercent()[1];
+    const rarePercent = setPercent()[2];
+    const epicPercent = setPercent()[3];
+    const legendaryPercent = setPercent()[4];
     const randomNumber = Math.random() * 100;
-    // 40%
-    if (randomNumber <= 40) {
-        return "uncommon-box";
-    } 
-    // 30%
-    else if (randomNumber <= 70) {
-        return "common-box";
-    } 
-    // 20%
-    else if (randomNumber <= 90) {
-        return "rare-box";
-    } 
-    // 9%
-    else if (randomNumber <= 99) {
-        return "epic-box";
-    } 
-    // 1%
-    else {
-        return "legendary-box";
+    if (randomNumber < uncommonPercent) {
+        return 'uncommon-box';
+    }
+    else if (randomNumber < uncommonPercent + commonPercent) {
+        return 'common-box';
+    }
+    else if (randomNumber < uncommonPercent + commonPercent + rarePercent) {
+        return 'rare-box';
+    }
+    else if (randomNumber < uncommonPercent + commonPercent + rarePercent + epicPercent) {
+        return 'epic-box';
+    }
+    else if (randomNumber < uncommonPercent + commonPercent + rarePercent + epicPercent + legendaryPercent) {
+        return 'legendary-box';
     }
 }
 
 function setRandomBox() {
+    let uncommon = 0;
+    let common = 0;
+    let rare = 0;
+    let epic = 0;
+    let legendary = 0;
+
+    const uncommonPercent = setPercent()[0];
+    const commonPercent = setPercent()[1];
+    const rarePercent = setPercent()[2];
+    const epicPercent = setPercent()[3];
+    const legendaryPercent = setPercent()[4];
+
     for(let i = 0; i < items.length; i++) {
         const randomBox = getRandomBox();
-        if (randomBox == 'uncommon-box') {
+        if (randomBox === 'uncommon-box' && uncommon <boxcount * uncommonPercent / 100) {
             items[i].firstChild.src = img[0];
+            uncommon++;
         }
-        else if (randomBox == 'common-box') {
+        else if (randomBox === 'common-box' && common < boxcount * commonPercent / 100) {
             items[i].firstChild.src = img[1];
+            common++;
         }
-        else if (randomBox == 'rare-box') {
+        else if (randomBox === 'rare-box' && rare < boxcount * rarePercent / 100) {
             items[i].firstChild.src = img[2];
+            rare++;
         }
-        else if (randomBox == 'epic-box') {
+        else if (randomBox === 'epic-box' && epic < boxcount * epicPercent / 100) {
             items[i].firstChild.src = img[3];
+            epic++;
         }
-        else if (randomBox == 'legendary-box') {
+        else if (randomBox === 'legendary-box' && legendary < boxcount * legendaryPercent / 100) {
             items[i].firstChild.src = img[4];
+            legendary++;
         }
-    }
-    // show result of randombox
-    const results = {
-        "uncommon-box": 0,
-        "common-box": 0,
-        "rare-box": 0,
-        "epic-box": 0,
-        "legendary-box": 0,
-      };
-    
-    const randomBoxCount = items.length;
-  
-    for (let i = 0; i < randomBoxCount; i++) {
-      const randomBox = getRandomBox();
-      results[randomBox]++;
-    }
-  
-    for (const box in results) {
-      const percentage = (results[box] / randomBoxCount) * 100;
-      console.log(`${box}: ${results[box]} กล่อง (${percentage.toFixed(2)}%)`);
+        else {
+            i--;
+        }
     }
 }
