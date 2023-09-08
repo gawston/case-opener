@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: rgb(30, 30, 30);
+}
+
+.header-text {
+    color: #fff;
+    font-size: 36px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-shadow: 0px 0px 20px 2px  rgb(30, 30, 30);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    width: 800px;
+    border: 1px solid #eee;
+}
+
+.overlay {
+    position: absolute;
+    height: 150px;
+    width: 800px;
+    z-index: 1;
+    background-image: linear-gradient(to right, rgb(30, 30, 30), #ffffff00, #ffffff00, rgb(30, 30, 30));
+}
+
+.middle{
+    width:3px;
+    height:140px;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    /* box-shadow: 0px 0px 20px 2px  rgb(170, 170, 255); */
+    z-index: 2;
+}
+
+
+.slide {
+    display: flex;
+    align-items: center;
+    width: 10000px;
+    height: 150px;
+    overflow: hidden;
+}
+
+.items {
+    width: 130px;
+    height: 130px;
+    margin: 0 2px;
+    /* background-color: #fff; */
+    flex-shrink: 0;
+}
+
+.items img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+button {
+    width: 130px;
+    height: 40px;
+    border: none;
+    outline: none;
+    background-image: linear-gradient(to right, #3060aa, #4473bf, #5787d4, #699be9, #7cb0ff);
+    color: #fff;
+    font-size: 24px;
+    font-weight: semi-bold;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    filter: saturate(1.5);
+    box-shadow: #609fff83 0px 0px 20px 0px;
+}
+
+
+@keyframes slide {
+    0% {
+        transform: translateX(0px);
+    }
+
+    100% {
+        /* random */
+        transform: translateX(calc(-990.5px * 14));
+    }
+}
+
+.anim-slide {
+    animation: slide 8s cubic-bezier(0.5, 0.05, 0.01, 1) forwards;
+}
+
+.pop-up {
+    position: absolute;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 500px;
+    height: 300px;
+    background-color: rgba(40, 40, 40, 1);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 2px  rgba(255, 255, 255, 0.295);
+    z-index: 3;
+    animation: popup 0.3s ease forwards;
+}
+
+.pop-up img {
+    width: 150px;
+    height: 150px;
+}
+
+.pop-up-text {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+@keyframes popup {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.got-it {
+    width: 150px;
+    object-fit: cover;
+}
