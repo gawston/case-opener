@@ -15,7 +15,9 @@ const img = [
 ]
 
 // create items
-for(let i = 0; i < 200; i++) {
+const boxcount = 200;
+
+for(let i = 0; i < boxcount; i++) {
     const item = document.createElement('div');
     const addimg = document.createElement('img');
     item.classList.add('items');
@@ -27,6 +29,8 @@ const items = document.querySelectorAll('.items');
 setRandomBox();
 
 open.addEventListener('click', () => {
+    const audio = new Audio('assets/sound/case-opening.mp3');
+    audio.play();
     for (let i = 0; i < items.length; i++) {
         items[i].classList.add('anim-slide');
     }
@@ -44,8 +48,8 @@ open.addEventListener('click', () => {
         }
         setTimeout(() => {
             popup.style.display = 'flex';
-            const audio = new Audio('assets/sound/interface-124464.mp3');
-            audio.play();
+            // const audio = new Audio('assets/sound/interface-124464.mp3');
+            // audio.play();
         }, 300);
     });
 });
