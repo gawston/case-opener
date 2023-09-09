@@ -5,6 +5,8 @@ const slide = document.querySelector('.slide');
 const got = document.querySelector('.got-it');
 const middle = document.querySelector('.middle');
 const itemimg = document.querySelector('.item-img');
+const container = document.querySelector('.container');
+const headertext = document.querySelector('.header-text');
 
 // percent show in website
 const puncommon = document.querySelector('.p-uncommon');
@@ -59,12 +61,19 @@ open.addEventListener('click', () => {
         }
         setTimeout(() => {
             popup.style.display = 'flex';
+            container.style.filter = 'blur(10px)';
+            headertext.style.filter = 'blur(10px)';
+            open.style.filter = 'blur(10px)';
+            
         }, 300);
     });
 });
 
 close.addEventListener('click', () => {
     popup.style.display = 'none';
+    container.style.filter = 'blur(0px)';
+    headertext.style.filter = 'blur(0px)';
+    open.style.filter = 'blur(0px)';
 
     for (let i = 0; i < items.length; i++) {
         items[i].classList.remove('anim-slide');
