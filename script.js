@@ -41,7 +41,7 @@ open.addEventListener('click', () => {
     open.disabled = true;
     setTimeout(() => {
         open.disabled = false;
-    }, 8000); 
+    }, 7500); 
     for (let i = 0; i < items.length; i++) {
         items[i].classList.add('anim-slide');
     }
