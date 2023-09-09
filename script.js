@@ -135,4 +135,10 @@ function setRandomBox() {
             i--;
         }
     }
+    // console all box count and percent
+    console.log(`uncommon: ${uncommon} Box (${uncommonPercent}%)`);
+    console.log(`common: ${common} Box (${commonPercent}%)`);
+    console.log(`rare: ${rare} Box (${rarePercent}%)`);
+    console.log(`epic: ${epic} Box (${epicPercent}%)`);
+    console.log(`legendary: ${legendary} Box (${legendaryPercent}%)`);
 }
