@@ -38,6 +38,11 @@ setRandomBox();
 open.addEventListener('click', () => {
     const audio = new Audio('assets/sound/case-opening.mp3');
     audio.play();
+    // if sound play dont play again until sound end
+    open.disabled = true;
+    setTimeout(() => {
+        open.disabled = false;
+    }, 8000); 
     for (let i = 0; i < items.length; i++) {
         items[i].classList.add('anim-slide');
     }
