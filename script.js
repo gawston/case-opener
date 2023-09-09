@@ -6,6 +6,13 @@ const got = document.querySelector('.got-it');
 const middle = document.querySelector('.middle');
 const itemimg = document.querySelector('.item-img');
 
+// percent show in website
+const puncommon = document.querySelector('.p-uncommon');
+const pcommon = document.querySelector('.p-common');
+const prare = document.querySelector('.p-rare');
+const pepic = document.querySelector('.p-epic');
+const plegendary = document.querySelector('.p-legendary');
+
 const img = [
     'assets/uncommon-box.png',
     'assets/common-box.png',
@@ -71,6 +78,12 @@ function setPercent() {
     const legendaryPercent = 0.5;
     return [uncommonPercent, commonPercent, rarePercent, epicPercent, legendaryPercent];
 }
+
+puncommon.innerHTML = setPercent()[0] + '%';
+pcommon.innerHTML = setPercent()[1] + '%';
+prare.innerHTML = setPercent()[2] + '%';
+pepic.innerHTML = setPercent()[3] + '%';
+plegendary.innerHTML = setPercent()[4] + '%';
 
 function getRandomBox() {
     const uncommonPercent = setPercent()[0];
