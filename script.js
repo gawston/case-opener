@@ -7,17 +7,19 @@ const middle = document.querySelector('.middle');
 const itemimg = document.querySelector('.item-img');
 const container = document.querySelector('.container');
 const headertext = document.querySelector('.header-text');
+const imgpercent = document.querySelectorAll('.img-percent');
+const context = document.querySelectorAll('.context');
 
 // percent show in website
-const puncommon = document.querySelector('.p-uncommon');
 const pcommon = document.querySelector('.p-common');
+const puncommon = document.querySelector('.p-uncommon');
 const prare = document.querySelector('.p-rare');
 const pepic = document.querySelector('.p-epic');
 const plegendary = document.querySelector('.p-legendary');
 
 const img = [
-    'assets/uncommon-box.png',
     'assets/common-box.png',
+    'assets/uncommon-box.png',
     'assets/rare-box.png',
     'assets/epic-box.png',
     'assets/legendary-box.png',
@@ -83,67 +85,81 @@ close.addEventListener('click', () => {
         
 });
 
+// if hover context[i] then show context[i]
+for (let i = 0; i < imgpercent.length; i++) {
+    imgpercent[i].addEventListener('mouseover', () => {
+        context[i].style.display = 'flex';
+    });
+}
+
+// if mouseout context[i] then hide context[i]
+for (let i = 0; i < imgpercent.length; i++) {
+    imgpercent[i].addEventListener('mouseout', () => {
+        context[i].style.display = 'none';
+    });
+}
+
 function setPercent() {
-    const uncommonPercent = 55;
-    const commonPercent = 25;
+    const commonPercent = 55;
+    const uncommonPercent = 25;
     const rarePercent = 15;
     const epicPercent = 4.5;
     const legendaryPercent = 0.5;
-    return [uncommonPercent, commonPercent, rarePercent, epicPercent, legendaryPercent];
+    return [commonPercent, uncommonPercent, rarePercent, epicPercent, legendaryPercent];
 }
 
-puncommon.innerHTML = setPercent()[0] + '%';
-pcommon.innerHTML = setPercent()[1] + '%';
+pcommon.innerHTML = setPercent()[0] + '%';
+puncommon.innerHTML = setPercent()[1] + '%';
 prare.innerHTML = setPercent()[2] + '%';
 pepic.innerHTML = setPercent()[3] + '%';
 plegendary.innerHTML = setPercent()[4] + '%';
 
 function getRandomBox() {
-    const uncommonPercent = setPercent()[0];
-    const commonPercent = setPercent()[1];
+    const commonPercent = setPercent()[0];
+    const uncommonPercent = setPercent()[1];
     const rarePercent = setPercent()[2];
     const epicPercent = setPercent()[3];
     const legendaryPercent = setPercent()[4];
     const randomNumber = Math.random() * 100;
-    if (randomNumber < uncommonPercent) {
-        return 'uncommon-box';
-    }
-    else if (randomNumber < uncommonPercent + commonPercent) {
+    if (randomNumber < commonPercent) {
         return 'common-box';
     }
-    else if (randomNumber < uncommonPercent + commonPercent + rarePercent) {
+    else if (randomNumber < commonPercent + uncommonPercent) {
+        return 'uncommon-box';
+    }
+    else if (randomNumber < commonPercent + uncommonPercent + rarePercent) {
         return 'rare-box';
     }
-    else if (randomNumber < uncommonPercent + commonPercent + rarePercent + epicPercent) {
+    else if (randomNumber < commonPercent + uncommonPercent + rarePercent + epicPercent) {
         return 'epic-box';
     }
-    else if (randomNumber < uncommonPercent + commonPercent + rarePercent + epicPercent + legendaryPercent) {
+    else if (randomNumber < commonPercent + uncommonPercent + rarePercent + epicPercent + legendaryPercent) {
         return 'legendary-box';
     }
 }
 
 function setRandomBox() {
-    let uncommon = 0;
     let common = 0;
+    let uncommon = 0;
     let rare = 0;
     let epic = 0;
     let legendary = 0;
 
-    const uncommonPercent = setPercent()[0];
-    const commonPercent = setPercent()[1];
+    const commonPercent = setPercent()[0];
+    const uncommonPercent = setPercent()[1];
     const rarePercent = setPercent()[2];
     const epicPercent = setPercent()[3];
     const legendaryPercent = setPercent()[4];
 
     for(let i = 0; i < items.length; i++) {
         const randomBox = getRandomBox();
-        if (randomBox === 'uncommon-box' && uncommon <boxcount * uncommonPercent / 100) {
+        if (randomBox === 'common-box' && common <boxcount * commonPercent / 100) {
             items[i].firstChild.src = img[0];
-            uncommon++;
-        }
-        else if (randomBox === 'common-box' && common < boxcount * commonPercent / 100) {
-            items[i].firstChild.src = img[1];
             common++;
+        }
+        else if (randomBox === 'uncommon-box' && uncommon < boxcount * uncommonPercent / 100) {
+            items[i].firstChild.src = img[1];
+            uncommon++;
         }
         else if (randomBox === 'rare-box' && rare < boxcount * rarePercent / 100) {
             items[i].firstChild.src = img[2];
