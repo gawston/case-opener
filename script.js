@@ -66,7 +66,6 @@ random.addEventListener('click', () => {
             container.style.filter = 'blur(10px)';
             headertext.style.filter = 'blur(10px)';
             random.style.filter = 'blur(10px)';
-            
         }, 300);
     });
 });

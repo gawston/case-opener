@@ -31,6 +31,7 @@ body {
     height: 150px;
     width: 800px;
     border: 1px solid #eee;
+    transition: all 0.2s ease;
 }
 
 .overlay {
@@ -88,7 +89,6 @@ button {
 }
 
 button:hover {
-    filter: saturate(1.5);
     box-shadow: #609fff83 0px 0px 20px 0px;
 }
 
