@@ -168,7 +168,7 @@ button:hover {
     justify-content: center;
     width: 100px;
     height: 50px;
-    /* border: 1px solid #eee; */
+    cursor: pointer;
     color: #eee;
 }
 
@@ -199,10 +199,18 @@ button:hover {
     padding: 5px 5px;
     border-radius: 5px;
     transition: all 0.2s ease-in-out;
-    animation: context-popup 0.3s ease forwards;
+    -webkit-transition: all 1s ease;
 }
 
-@keyframes context-popup {
+.anim-context {
+    animation: context-up 0.2s ease forwards;
+}
+
+.anim-context-down {
+    animation: context-down 0.2s ease forwards;
+}
+
+@keyframes context-up {
     0% {
         opacity: 0;
         transform: translateY(20px);
@@ -211,5 +219,17 @@ button:hover {
     100% {
         opacity: 1;
         transform: translateY(0px);
+    }
+}
+
+@keyframes context-down {
+    0% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
     }
 }

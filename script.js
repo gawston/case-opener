@@ -1,4 +1,4 @@
-const open = document.querySelector('.open');
+const random = document.querySelector('.random');
 const close = document.querySelector('.close');
 const popup = document.querySelector('.pop-up');
 const slide = document.querySelector('.slide');
@@ -39,12 +39,12 @@ for(let i = 0; i < boxcount; i++) {
 const items = document.querySelectorAll('.items');
 setRandomBox();
 
-open.addEventListener('click', () => {
+random.addEventListener('click', () => {
     const audio = new Audio('assets/sound/case-opening.mp3');
     audio.play();
-    open.disabled = true;
+    random.disabled = true;
     setTimeout(() => {
-        open.disabled = false;
+        random.disabled = false;
     }, 7500); 
     for (let i = 0; i < items.length; i++) {
         items[i].classList.add('anim-slide');
@@ -65,7 +65,7 @@ open.addEventListener('click', () => {
             popup.style.display = 'flex';
             container.style.filter = 'blur(10px)';
             headertext.style.filter = 'blur(10px)';
-            open.style.filter = 'blur(10px)';
+            random.style.filter = 'blur(10px)';
             
         }, 300);
     });
@@ -75,7 +75,7 @@ close.addEventListener('click', () => {
     popup.style.display = 'none';
     container.style.filter = 'blur(0px)';
     headertext.style.filter = 'blur(0px)';
-    open.style.filter = 'blur(0px)';
+    random.style.filter = 'blur(0px)';
 
     for (let i = 0; i < items.length; i++) {
         items[i].classList.remove('anim-slide');
@@ -89,15 +89,19 @@ close.addEventListener('click', () => {
 for (let i = 0; i < imgpercent.length; i++) {
     imgpercent[i].addEventListener('mouseover', () => {
         context[i].style.display = 'flex';
+        context[i].classList.add('anim-context');
+    });
+
+    imgpercent[i].addEventListener('mouseout', () => {
+        context[i].classList.remove('anim-context');
+        context[i].classList.add('anim-context-down');
+        setTimeout(() => {
+            context[i].style.display = 'none';
+            context[i].classList.remove('anim-context-down');
+        }, 200);
     });
 }
 
-// if mouseout context[i] then hide context[i]
-for (let i = 0; i < imgpercent.length; i++) {
-    imgpercent[i].addEventListener('mouseout', () => {
-        context[i].style.display = 'none';
-    });
-}
 
 function setPercent() {
     const commonPercent = 55;
