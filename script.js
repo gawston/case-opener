@@ -84,7 +84,7 @@ close.addEventListener('click', () => {
         
 });
 
-// if hover context[i] then show context[i]
+// show context
 for (let i = 0; i < imgpercent.length; i++) {
     imgpercent[i].addEventListener('mouseover', () => {
         context[i].style.display = 'flex';
