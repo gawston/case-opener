@@ -39,6 +39,7 @@ for(let i = 0; i < boxcount; i++) {
 const items = document.querySelectorAll('.items');
 setRandomBox();
 
+
 random.addEventListener('click', () => {
     const audio = new Audio('assets/sound/case-opening.mp3');
     audio.play();
@@ -101,7 +102,6 @@ for (let i = 0; i < imgpercent.length; i++) {
     });
 }
 
-
 function setPercent() {
     const commonPercent = 55;
     const uncommonPercent = 25;
@@ -139,6 +139,7 @@ function getRandomBox() {
     else if (randomNumber < commonPercent + uncommonPercent + rarePercent + epicPercent + legendaryPercent) {
         return 'legendary-box';
     }
+    
 }
 
 function setRandomBox() {
@@ -180,4 +181,11 @@ function setRandomBox() {
             i--;
         }
     }
+    // check box
+    console.log(`common box: ${common} (${commonPercent}%)`);
+    console.log(`uncommon box: ${uncommon} (${uncommonPercent}%)`);
+    console.log(`rare box: ${rare} (${rarePercent}%)`);
+    console.log(`epic box: ${epic} (${epicPercent}%)`);
+    console.log(`legendary box: ${legendary} (${legendaryPercent}%)`);
+    console.log(`total box: ${boxcount} (100%)`);
 }
